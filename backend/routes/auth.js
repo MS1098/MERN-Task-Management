@@ -28,4 +28,14 @@ router.post('/signin', async (req,res) => {
   } catch(err) { res.status(500).json({ error: err.message }); }
 });
 
+router.get('/debug/list-users', async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.json({ count: users.length, users });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 module.exports = router;

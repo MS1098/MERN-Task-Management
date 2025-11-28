@@ -18,6 +18,8 @@ router.post('/signup', async (req,res) => {
 // POST /api/auth/signin
 router.post('/signin', async (req,res) => {
   try {
+    console.log("BODY RECEIVED:", req.body);
+
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if(!user) return res.status(400).json({message:'Invalid credentials'});

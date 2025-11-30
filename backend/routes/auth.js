@@ -22,8 +22,10 @@ router.post('/signin', async (req,res) => {
 
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+    console.log("user:",user);
     if(!user) return res.status(400).json({message:'Invalid credentials'});
     const match = await user.matchPassword(password);
+    console.log("pass:::",match)
     if(!match) return res.status(400).json({message:'Invalid credentials'});
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.json({ token, user: { id:user._id, name:user.name, email:user.email, role:user.role }});

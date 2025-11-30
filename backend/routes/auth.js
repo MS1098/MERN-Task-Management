@@ -60,5 +60,24 @@ router.get("/debug/test-pass", async (req, res) => {
 });
 
 
+// CREATE ADMIN ONLY ONCE
+router.get('/debug/create-admin', async (req, res) => {
+  const bcrypt = require("bcryptjs");
+  
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash("admin123", salt);
+
+  const user = await User.create({
+    name: "Root Admin",
+    email: "admin@example1.com",
+    password: hashedPassword,
+    role: "admin"
+  });
+
+  res.json({ message: "Admin created", user });
+});
+
+
+
 
 module.exports = router;

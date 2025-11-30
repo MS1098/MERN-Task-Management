@@ -41,5 +41,24 @@ router.get('/debug/list-users', async (req, res) => {
   }
 });
 
+router.get("/debug/test-pass", async (req, res) => {
+  try {
+    const user = await User.findOne({ email: "admin@example.com" }).lean();
+    if (!user) return res.json({ found: false });
+
+    const bcrypt = require("bcryptjs");
+    const match = await bcrypt.compare("admin123", user.password);
+
+    res.json({
+      found: true,
+      storedHash: user.password,
+      matchesAdmin123: match
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 
 module.exports = router;

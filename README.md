@@ -28,3 +28,13 @@ A full-stack Task Management System built using MERN Stack focusing on a clean U
 | **Backend**    | Node.js, Express.js, JWT Auth, bcrypt |
 | **Database**   | MongoDB Atlas (Mongoose ORM)          |
 | **Deployment** | Vercel (Frontend), Render (Backend)   |
+
+
+Credentials:
+
+| Email               | Password                         |
+| --------------      | ---------------------------------|
+| **admin@mtm.com**   | admin123                         |
+
+
+
